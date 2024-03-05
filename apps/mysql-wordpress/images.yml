@@ -1,0 +1,16 @@
+manifest:
+  foundation: mark-something-n-01
+  registry: harbor.markalston.net
+  registryUsername: admin
+  registryPasswordKey: harbor_admin_pw
+  images:
+  - name: mysql
+    tag: sha256:d4c783e85ef8647a4350cb7aa7a8ddc7ebfd7cb217de4c2d1643e212ba94fcbd
+    transport: docker
+    source: docker.io
+    project: test-apps
+  - name: wordpress
+    tag: sha256:ebbde622d13131d5dde0adb17a605b2a4885beddf2bf6f3c419dcb921dbc9f43
+    transport: docker
+    source: docker.io
+    project: test-apps

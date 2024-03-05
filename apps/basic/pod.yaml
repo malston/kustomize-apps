@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: basic-pv-pod
+  namespace: storage-testing
+spec:
+  volumes:
+  - name: basic-pv
+    persistentVolumeClaim:
+      claimName: basic-pvc
+  containers:
+  - name: busybox
+    image: harbor.markalston.net/prometheus-debug/busybox:1.36.1
+    imagePullPolicy: Always
+    command:
+    - sleep
+    - "3600"
+    volumeMounts:
+    - mountPath: "/tmp"
+      name: basic-pv
