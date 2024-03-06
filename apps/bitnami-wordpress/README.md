@@ -6,7 +6,9 @@ This directory contains the Kubernetes manifest files of the WordPress and Maria
 
 Download images from Docker and transfer them to Harbor
 
-    ../../scripts/copy-images.sh -m images.yml
+```sh
+../../scripts/copy-images.sh -m images.yml
+```
 
 ## Deploy
 
@@ -14,7 +16,9 @@ Apply based upon your environment
 
 - **dev**
 
-        ./run.sh apply dev $CLUSTER_DOMAIN
+    ```sh
+    ./run.sh apply dev $CLUSTER_DOMAIN
+    ```
 
     where `$CLUSTER_DOMAIN` is the tld for wordpress.
     (i.e., example.com)
@@ -23,6 +27,8 @@ Apply based upon your environment
 
 - **prod**
 
-        ./run.sh apply prod $CLUSTER_DOMAIN
+    ```sh
+    ./run.sh apply prod $CLUSTER_DOMAIN
+    ```
 
     when `prod` is used then `istio` is used for ingress and `nas-performance` is used for the storage class
