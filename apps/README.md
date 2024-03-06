@@ -11,3 +11,7 @@ This [app](./guestbook/README.md) creates a `Deployment` using Trident provision
 ## Wordpress with MySQL
 
 This [app](./mysql-wordpress/README.md) creates a `Deployment` using Trident provisioned `PersistentVolume` using one of the Trident provided `StorageClass` options.
+
+## Wordpress with PostgreSQL
+
+This [app](./postgres-wordpress/README.md) creates a `StatefulSet` using Trident provisioned `PersistentVolume` using one of the Trident provided `StorageClass` options.

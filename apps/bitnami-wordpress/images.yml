@@ -3,13 +3,17 @@ manifest:
   registryUsername: admin
   registryPasswordKey: harbor_admin_pw
   images:
-  - name: mysql
-    tag: sha256:d4c783e85ef8647a4350cb7aa7a8ddc7ebfd7cb217de4c2d1643e212ba94fcbd
+  - name: bitnami/wordpress
+    tag: 6.4.3-debian-12-r18
     transport: docker
     source: docker.io
     project: test-apps
-  - name: wordpress
-    tag: sha256:ebbde622d13131d5dde0adb17a605b2a4885beddf2bf6f3c419dcb921dbc9f43
+    arch: amd64
+    os: linux
+  - name: bitnami/mariadb
+    tag: 11.2.3-debian-12-r4
     transport: docker
     source: docker.io
     project: test-apps
+    arch: amd64
+    os: linux

@@ -1,5 +1,4 @@
 manifest:
-  foundation: mark-something-n-01
   registry: harbor.markalston.net
   registryUsername: admin
   registryPasswordKey: harbor_admin_pw
