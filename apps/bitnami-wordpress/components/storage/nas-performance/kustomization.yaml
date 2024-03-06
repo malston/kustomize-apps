@@ -7,11 +7,11 @@ resources:
 patches:
 - patch: |
     - op: replace
-      path: /spec/storageClassName
+      path: /spec/volumeClaimTemplates/0/spec/storageClassName
       value: nas-performance
   target:
-    kind: PersistentVolumeClaim
-    name: data-wordpress-mariadb-0
+    kind: StatefulSet
+    name: wordpress-mariadb
 
 - patch: |
     - op: replace
