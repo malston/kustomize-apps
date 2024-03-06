@@ -24,5 +24,5 @@ replacements:
       index: 1
 
 components:
-- ../../components/istio
-- ../../components/nas-performance
+- ../../components/ingress/istio
+- ../../components/storage/nas-performance

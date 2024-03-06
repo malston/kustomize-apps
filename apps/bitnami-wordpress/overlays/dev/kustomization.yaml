@@ -24,5 +24,5 @@ replacements:
       index: 1
 
 components:
-- ../../components/contour
-- ../../components/thin-disk
+- ../../components/ingress/contour
+- ../../components/storage/thin-disk

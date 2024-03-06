@@ -10,15 +10,19 @@ Download images from Docker and transfer them to Harbor
 
 ## Deploy
 
-Apply based upon your choice of storage
+Apply based upon your environment
 
-- **thin-disk**
+- **dev**
 
         ./run.sh apply dev $CLUSTER_DOMAIN
 
     where `$CLUSTER_DOMAIN` is the tld for wordpress.
     (i.e., example.com)
 
-- **nas-performance**
+    when `dev` is used then `contour` is used for ingress and `thin-disk` is used for the storage class
+
+- **prod**
 
         ./run.sh apply prod $CLUSTER_DOMAIN
+
+    when `prod` is used then `istio` is used for ingress and `nas-performance` is used for the storage class
