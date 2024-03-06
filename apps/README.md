@@ -15,3 +15,7 @@ This [app](./mysql-wordpress/README.md) creates a `Deployment` using Trident pro
 ## Wordpress with PostgreSQL
 
 This [app](./postgres-wordpress/README.md) creates a `StatefulSet` using Trident provisioned `PersistentVolume` using one of the Trident provided `StorageClass` options.
+
+## Wordpress from Bitnami Helm Chart
+
+This [app](./bitnami-wordpress/README.md) creates a `StatefulSet` using Trident provisioned `PersistentVolume` using one of the Trident provided `StorageClass` options.

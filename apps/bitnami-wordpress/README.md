@@ -14,11 +14,11 @@ Apply based upon your choice of storage
 
 - **thin-disk**
 
-        ./run.sh apply base $CLUSTER_DOMAIN
+        ./run.sh apply dev $CLUSTER_DOMAIN
 
     where `$CLUSTER_DOMAIN` is the tld for wordpress.
     (i.e., example.com)
 
 - **nas-performance**
 
-        ./run.sh apply nas-performance $CLUSTER_DOMAIN
+        ./run.sh apply prod $CLUSTER_DOMAIN
