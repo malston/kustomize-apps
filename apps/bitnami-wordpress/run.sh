@@ -17,7 +17,6 @@ COMMAND=$1
 OVERLAY=$2
 DOMAIN=$3
 
-set -x
 case "$COMMAND" in
   diff) diff <(kustomizeIt base) <(kustomizeIt "$OVERLAY") | more
   ;;
