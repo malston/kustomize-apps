@@ -2,16 +2,16 @@ apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 
 resources:
-- ../../base
+- ../../../base
 
 patches:
 - patch: |
     - op: replace
-      path: /spec/storageClassName
+      path: /spec/volumeClaimTemplates/0/spec/storageClassName
       value: thin-disk
   target:
-    kind: PersistentVolumeClaim
-    name: data-wordpress-mariadb-0
+    kind: StatefulSet
+    name: wordpress-mariadb
 
 - patch: |
     - op: replace
