@@ -28,4 +28,3 @@ replacements:
 
 components:
 - ../../components/ingress/contour
-- ../../components/storage/thin-disk
