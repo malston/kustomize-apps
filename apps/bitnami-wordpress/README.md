@@ -17,18 +17,15 @@ Apply based upon your environment
 - **dev**
 
     ```sh
-    ./run.sh apply dev $CLUSTER_DOMAIN
+    ./run.sh apply dev
     ```
-
-    where `$CLUSTER_DOMAIN` is the tld for wordpress.
-    (i.e., example.com)
 
     when `dev` is used then `contour` is used for ingress and `thin-disk` is used for the storage class
 
 - **prod**
 
     ```sh
-    ./run.sh apply prod $CLUSTER_DOMAIN
+    ./run.sh apply prod
     ```
 
     when `prod` is used then `istio` is used for ingress and `nas-performance` is used for the storage class
