@@ -7,6 +7,7 @@ components:
  - ../../components/istio
 
 resources:
+- guestbook-namespace.yaml
 - guestbook-frontend-deployment.yaml
 - guestbook-frontend-service.yaml
 - redis-follower-deployment.yaml

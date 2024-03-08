@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: testapp-wordpress
 
 resources:
+- wordpress-namespace.yaml
 - mysql-service.yaml
 - wordpress-service.yaml
 - mysql-deployment.yaml

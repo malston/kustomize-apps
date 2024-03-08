@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: testapp-wordpress
+
 components:
 - ../components/istio
-
-namespace: testapp-wordpress
 
 resources:
 - wordpress-namespace.yaml
@@ -37,4 +37,3 @@ patches:
   target:
     kind: Deployment
     name: wordpress
-

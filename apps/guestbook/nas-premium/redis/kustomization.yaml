@@ -2,20 +2,20 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../base/redis
+- ../../base/redis
 
 patches:
-  - patch: |
-      - op: replace
-        path: /spec/storageClassName
-        value: nas-premium
-    target:
-      kind: PersistentVolumeClaim
-      name: redis-follower-pvc
-  - patch: |
-      - op: replace
-        path: /spec/storageClassName
-        value: nas-premium
-    target:
-      kind: PersistentVolumeClaim
-      name: redis-leader-pvc
+- patch: |
+    - op: replace
+      path: /spec/storageClassName
+      value: nas-premium
+  target:
+    kind: PersistentVolumeClaim
+    name: redis-follower-pvc
+- patch: |
+    - op: replace
+      path: /spec/storageClassName
+      value: nas-premium
+  target:
+    kind: PersistentVolumeClaim
+    name: redis-leader-pvc
