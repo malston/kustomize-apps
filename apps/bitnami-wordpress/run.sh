@@ -8,7 +8,6 @@ __DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 function kustomizeIt {
   kubectl kustomize \
     --enable-helm \
-    --helm-command helm \
     "$__DIR/$1"
 }
 
