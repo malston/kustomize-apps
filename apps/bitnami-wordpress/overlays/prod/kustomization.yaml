@@ -11,14 +11,14 @@ helmCharts:
   valuesInline:
     global:
       imageRegistry: harbor.markalston.net
-      storageClass: nas-performance
+      storageClass: nas-ultra
     image:
       registry: harbor.markalston.net
       repository: test-apps/bitnami/wordpress
       tag: 6.4.3-debian-12-r18
       pullPolicy: Always
     persistence:
-      storageClass: nas-performance
+      storageClass: nas-ultra
       size: 10Gi
     service:
       type: ClusterIP
