@@ -1,6 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+resources:
+- ../../base
+
 helmCharts:
 - name: wordpress
   includeCRDs: false
@@ -8,14 +11,14 @@ helmCharts:
   valuesInline:
     global:
       imageRegistry: harbor.markalston.net
-      storageClass: kubernetes-storage-policy
+      storageClass: nas-performance
     image:
       registry: harbor.markalston.net
       repository: test-apps/bitnami/wordpress
       tag: 6.4.3-debian-12-r18
       pullPolicy: Always
     persistence:
-      storageClass: kubernetes-storage-policy
+      storageClass: nas-performance
       size: 10Gi
     service:
       type: ClusterIP
@@ -33,21 +36,11 @@ helmCharts:
   version: 20.0.1
   repo: https://charts.bitnami.com/bitnami
 
-resources:
-- ../../base
-
-configMapGenerator:
-- name: parameters
-  env: params.env
-
-generatorOptions:
-  disableNameSuffixHash: true
-
 replacements:
 - source:
-    kind: ConfigMap
-    name: parameters
-    fieldPath: data.clusterDomain
+    fieldPath: metadata.labels.cluster
+    kind: VirtualService
+    name: wordpress
   targets:
   - select:
       kind: VirtualService
@@ -60,4 +53,8 @@ replacements:
 
 components:
 - ../../components/ingress/istio
-- ../../components/storage/nas-performance
+- ../../components/storage/nas-ultra
+
+commonLabels:
+  cluster: prod-0.h2o-75-23326.h2o.vmware.com
+  env: h2o-75-23326

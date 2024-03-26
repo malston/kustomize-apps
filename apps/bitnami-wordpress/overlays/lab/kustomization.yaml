@@ -4,27 +4,56 @@ kind: Kustomization
 resources:
 - ../../base
 
-configMapGenerator:
-- name: parameters
-  env: params.env
-
-generatorOptions:
-  disableNameSuffixHash: true
+helmCharts:
+- name: wordpress
+  includeCRDs: false
+  valuesMerge: replace
+  valuesInline:
+    global:
+      imageRegistry: docker.io
+      storageClass: thin-disk
+    image:
+      registry: docker.io
+      repository: bitnami/wordpress
+      tag: 6.4.3-debian-12-r18
+    persistence:
+      storageClass: thin-disk
+      size: 10Gi
+    service:
+      type: ClusterIP
+    serviceAccount:
+      create: false
+    mariadb:
+      serviceAccount:
+        create: false
+      image:
+        repository: bitnami/mariadb
+        tag: 11.2.3-debian-12-r4
+      networkPolicy:
+        enabled: false
+  releaseName: wordpress
+  version: 20.0.1
+  repo: https://charts.bitnami.com/bitnami
 
 replacements:
 - source:
-    kind: ConfigMap
-    name: parameters
-    fieldPath: data.clusterDomain
+    fieldPath: metadata.labels.cluster
+    kind: VirtualService
+    name: wordpress
   targets:
   - select:
-      kind: HTTPProxy
+      kind: VirtualService
       name: wordpress
     fieldPaths:
-    - spec.virtualhost.fqdn
+    - spec.hosts.0
     options:
       delimiter: '.'
       index: 1
 
 components:
 - ../../components/ingress/contour
+- ../../components/storage/nas-performance
+
+commonLabels:
+  cluster: lab-0.h2o-75-23326.h2o.vmware.com
+  env: h2o-75-23326
