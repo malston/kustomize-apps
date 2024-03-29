@@ -19,13 +19,9 @@ spec:
     spec:
       securityContext:
         fsGroup: 33
-        # fsGroupChangePolicy: "OnRootMismatch"
       containers:
       - name: wordpress
-        image: wordpress:4.8-apache
-        # securityContext:
-        #   runAsUser: 33
-        #   runAsGroup: 33
+        image: wordpress
         env:
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql

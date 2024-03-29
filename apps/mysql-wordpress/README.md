@@ -16,23 +16,23 @@ Apply based upon your choice of storage
 - thin-disk
 
     ```sh
-    clusterDomain=cluster03.markalston.net kubectl apply -k ./thin-disk
+    clusterDomain=$CLUSTER kubectl apply -k ./thin-disk
     ```
 
 - nas-standard
 
     ```sh
-    clusterDomain=cluster03.markalston.net kubectl apply -k ./nas-standard
+    clusterDomain=$CLUSTER kubectl apply -k ./nas-standard
     ```
 
 - nas-performance
 
     ```sh
-    clusterDomain=cluster03.markalston.net kubectl apply -k ./nas-performance
+    clusterDomain=$CLUSTER kubectl apply -k ./nas-performance
     ```
 
 - nas-extreme
 
     ```sh
-    clusterDomain=cluster03.markalston.net kubectl apply -k ./nas-extreme
+    clusterDomain=$CLUSTER kubectl apply -k ./nas-extreme
     ```

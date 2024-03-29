@@ -21,6 +21,8 @@ function delete {
 
 function apply {
   kustomizeIt "$1" | kubectl apply -f -
+  namespace="wordpress"
+  printf "\nLogin to: %s\nUsername: %s\nPassword: %s\n" "https://wordpress.$(kubectl get httpproxy --namespace $namespace wordpress -ojsonpath='{.spec.virtualhost.fqdn}')" "user" "$(kubectl get secret --namespace $namespace wordpress -o jsonpath='{.data.wordpress-password}' | base64 -d)"
 }
 
 function validate_overlay_arg {
