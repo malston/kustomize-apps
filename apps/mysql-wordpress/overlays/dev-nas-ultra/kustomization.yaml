@@ -5,6 +5,7 @@ namespace: storage-testing
 
 resources:
 - ../../base
+- namespace.yaml
 
 components:
 - ../../components/ingress/istio

@@ -5,6 +5,7 @@ namespace: wordpress
 
 resources:
 - ../../base
+- namespace.yaml
 
 helmCharts:
 - name: wordpress
