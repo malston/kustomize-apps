@@ -11,5 +11,5 @@ spec:
       port: 80
   virtualhost:
     fqdn: wordpress.
-    tls:
-      secretName: cert-manager/prod-wildcard-certs
+    # tls:
+    #   secretName: cert-manager/prod-wildcard-certs
