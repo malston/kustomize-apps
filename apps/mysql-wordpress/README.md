@@ -13,26 +13,20 @@ Download images from Docker and transfer them to Harbor
 
 Apply based upon your choice of storage
 
-- thin-disk
+* thin-disk
 
     ```sh
-    clusterDomain=$CLUSTER kubectl apply -k ./thin-disk
+    ./kustomize.sh apply overlays/dev-thin-disk
     ```
 
-- nas-standard
+* nas-performance
 
     ```sh
-    clusterDomain=$CLUSTER kubectl apply -k ./nas-standard
+    ./kustomize.sh apply overlays/dev-nas-performance
     ```
 
-- nas-performance
+* nas-ultra
 
     ```sh
-    clusterDomain=$CLUSTER kubectl apply -k ./nas-performance
-    ```
-
-- nas-extreme
-
-    ```sh
-    clusterDomain=$CLUSTER kubectl apply -k ./nas-extreme
+    ./kustomize.sh apply overlays/dev-nas-ultra
     ```
