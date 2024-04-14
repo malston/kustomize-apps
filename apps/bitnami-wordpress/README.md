@@ -13,19 +13,35 @@ Download images from Docker and transfer them to Harbor
 ## Deploy
 
 Apply based upon your environment
+`istio` is used for ingress and `nas-performance` is used for the storage class
 
 - **dev**
 
     ```sh
-    ./kustomize.sh apply overlays/dev
+    ./run.sh apply dev-nas-performance
     ```
 
-    when `dev` is used then `contour` is used for ingress and `thin-disk` is used for the storage class
+    ```sh
+    ./run.sh apply dev-nas-ultra
+    ```
 
 - **prod**
 
     ```sh
-    ./kustomize.sh apply overlays/prod
+    ./run.sh apply prod
     ```
 
-    when `prod` is used then `istio` is used for ingress and `nas-performance` is used for the storage class
+## Login
+
+Login to:
+```sh
+ttps://$(kubectl get cm --namespace $namespace parameters -ojsonpath='{.data.clusterDomain}')
+```
+
+Username: user
+
+Get the password:
+
+```sh
+kubectl get secret --namespace wordpress wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
+```
