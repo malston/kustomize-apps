@@ -7,54 +7,37 @@ resources:
 - ../../base
 - namespace.yaml
 
-helmCharts:
+secretGenerator:
+- name: wordpress-mariadb
+  namespace: wordpress
+  behavior: replace
+  literals:
+    - mariadb-password=password
+    - mariadb-root-password=password
 - name: wordpress
-  includeCRDs: false
-  valuesInline:
-    global:
-      imageRegistry: harbor.markalston.net
-    image:
-      registry: harbor.markalston.net
-      repository: test-apps/bitnami/wordpress
-      tag: 6.4.3-debian-12-r18
-      pullPolicy: Always
-    persistence:
-      size: 100Gi
-    service:
-      type: ClusterIP
+  namespace: wordpress
+  behavior: replace
+  literals:
+    - wordpress-password=password
 
-    mariadb:
-      image:
-        repository: test-apps/bitnami/mariadb
-        tag: 11.2.3-debian-12-r4
-        pullPolicy: Always
-      primary:
-        persistence:
-          size: 100Gi
-  releaseName: wordpress
-  version: 20.0.1
+patches:
+- patch: |
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: harbor.markalston.net/test-apps/wordpress:6.4.3-debian-12-r18
+  target:
+    kind: Deployment
+    name: wordpress
+- patch: |
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: harbor.markalston.net/test-apps/mariadb:11.2.3-debian-12-r4
+  target:
+    kind: StatefulSet
+    name: wordpress-mariadb
 
-configMapGenerator:
-- name: parameters
-  env: params.env
-
-generatorOptions:
-  disableNameSuffixHash: true
-
-replacements:
-- source:
-    kind: ConfigMap
-    name: parameters
-    fieldPath: data.clusterDomain
-  targets:
-  - select:
-      kind: VirtualService
-      name: wordpress
-    fieldPaths:
-    - spec.hosts.0
-    options:
-      delimiter: '.'
-      index: 1
+transformers:
+- ../../transformers/istio
 
 components:
 - ../../components/ingress/istio

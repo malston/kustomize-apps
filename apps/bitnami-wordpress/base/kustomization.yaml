@@ -1,6 +1,40 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: wordpress
+
+helmCharts:
+- name: wordpress
+  namespace: wordpress
+  includeCRDs: false
+  valuesMerge: replace
+  valuesInline:
+    global:
+      imageRegistry: docker.io
+      storageClass: thin-disk
+    image:
+      registry: docker.io
+      repository: bitnami/wordpress
+      tag: 6.4.3-debian-12-r18
+    mariadb:
+      image:
+        repository: bitnami/mariadb
+        tag: 11.2.3-debian-12-r4
+      networkPolicy:
+        enabled: false
+      serviceAccount:
+        create: false
+    persistence:
+      size: 10Gi
+      storageClass: thin-disk
+    service:
+      type: ClusterIP
+    serviceAccount:
+      create: false
+  releaseName: wordpress
+  repo: https://charts.bitnami.com/bitnami
+  version: 20.0.1
+
 patches:
 - patch: |
     - op: replace
